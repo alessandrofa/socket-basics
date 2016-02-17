@@ -5,12 +5,12 @@ socket.on('connect', function () {
 });
 
 socket.on('message', function(message) {
-    console.log('New message:');
-    console.log(message.text);
+    $messages.append("<p>" + message.text + "</p>");
 });
 
 //Handles submitting new messages 
 var $form = jQuery('#message-form');
+var $messages = jQuery('.messages');
 
 $form.on('submit', function (event) {
     event.preventDefault();
