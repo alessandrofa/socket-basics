@@ -11,13 +11,18 @@ socket.on('connect', function () {
 
 socket.on('message', function(message) {
     var momentTimestamp = moment.utc(message.timestamp).local();
-    $messages.append('<p><strong> ' + message.name + ' ' + momentTimestamp.format('h:mm:ss a') + '</strong></p>'); 
-    $messages.append('<p>' + message.text + '</p>');
+    
+    var $message = jQuery('<li class="list-group-item"></li>');
+    
+    $message.append('<p><strong> ' + message.name + ' ' + momentTimestamp.format('h:mm:ss a') + '</strong></p>'); 
+    $message.append('<p>' + message.text + '</p>');
+    
+    $messages.append($message);
 });
 
 //Handles submitting new messages 
 var $form = jQuery('#message-form');
-var $messages = jQuery('.messages');
+var $messages = jQuery('#messages');
 var $room = jQuery('#chat-room');
 $room.text(room);
 
